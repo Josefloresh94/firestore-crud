@@ -8,7 +8,7 @@ import {
 } from '@angular/forms';
 import { AuthService } from '../../data-access/auth.service';
 import { toast } from 'ngx-sonner';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 interface FormSignUp {
   email: FormControl<string | null>;
@@ -16,7 +16,7 @@ interface FormSignUp {
 }
 @Component({
   selector: 'app-sign-up',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, RouterLink],
   templateUrl: './sign-up.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -47,12 +47,10 @@ export default class SignUpComponent {
       await this._authService.signUp({ email, password });
 
       toast.success('Usuario creado correctamente!');
-      this.form.reset();
       this._router.navigateByUrl('/tasks');
     } catch (error) {
       toast.error('Error al crear el usuario. Por favor, inténtalo de nuevo.');
       console.error('Error al crear el usuario:', error);
-      this.form.reset();
     }
   }
 
