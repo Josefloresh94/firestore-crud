@@ -8,6 +8,7 @@ import {
 import { Router, RouterLink } from '@angular/router';
 import { toast } from 'ngx-sonner';
 import { AuthService } from '../../data-access/auth.service';
+import { GoogleButtonComponent } from '../../ui/google-button/google-button.component';
 
 interface FormSignIn {
   email: FormControl<string | null>;
@@ -15,7 +16,7 @@ interface FormSignIn {
 }
 @Component({
   selector: 'app-sign-in',
-  imports: [ReactiveFormsModule, RouterLink],
+  imports: [ReactiveFormsModule, RouterLink, GoogleButtonComponent],
   templateUrl: './sign-in.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -50,6 +51,20 @@ export default class SignInComponent {
     } catch (error) {
       toast.error('Error al iniciar sesión. Por favor, inténtalo de nuevo.');
       console.error('Error al iniciar sesión:', error);
+    }
+  }
+
+  async submitWithGoogle() {
+    try {
+      await this._authService.signInWithGoogle();
+
+      toast.success('Inicio de sesión exitoso con Google!');
+      this._router.navigateByUrl('/tasks');
+    } catch (error) {
+      toast.error(
+        'Error al iniciar sesión con Google. Por favor, inténtalo de nuevo.'
+      );
+      console.error('Error al iniciar sesión con Google:', error);
     }
   }
 }
