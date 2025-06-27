@@ -1,6 +1,7 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { TableComponent } from '../../ui/table/table.component';
 import { RouterLink } from '@angular/router';
+import { TaskService } from '../../data-access/task.service';
 
 @Component({
   selector: 'app-task-list',
@@ -9,4 +10,6 @@ import { RouterLink } from '@angular/router';
   styles: ``,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export default class TaskListComponent {}
+export default class TaskListComponent {
+  tasksService = inject(TaskService);
+}

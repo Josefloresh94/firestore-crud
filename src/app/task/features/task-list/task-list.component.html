@@ -8,5 +8,9 @@
       Nueva Tarea
     </a>
   </div>
-  <app-table />
+  @if (tasksService.loading()) {
+    <p>Cargando ...</p>
+  } @else {
+    <app-table [tasks]="tasksService.getTasks()" />
+  }
 </section>
