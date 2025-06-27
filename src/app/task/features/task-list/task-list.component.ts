@@ -9,6 +9,7 @@ import { TaskService } from '../../data-access/task.service';
   templateUrl: './task-list.component.html',
   styles: ``,
   changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [TaskService],
 })
 export default class TaskListComponent {
   tasksService = inject(TaskService);

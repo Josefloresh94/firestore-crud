@@ -16,6 +16,7 @@ import { Router } from '@angular/router';
   imports: [ReactiveFormsModule],
   templateUrl: './task-form.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [TaskService],
 })
 export default class TaskFormComponent {
   private _formBuilder = inject(FormBuilder);
