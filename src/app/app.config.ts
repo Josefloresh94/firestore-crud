@@ -2,7 +2,7 @@ import {
   ApplicationConfig,
   provideExperimentalZonelessChangeDetection,
 } from '@angular/core';
-import { provideRouter } from '@angular/router';
+import { provideRouter, withComponentInputBinding } from '@angular/router';
 
 import { routes } from './app.routes';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
@@ -12,7 +12,7 @@ import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 export const appConfig: ApplicationConfig = {
   providers: [
     provideExperimentalZonelessChangeDetection(),
-    provideRouter(routes),
+    provideRouter(routes, withComponentInputBinding()),
     provideFirebaseApp(() =>
       initializeApp({
         projectId: 'ng-task-18-d9afa',
